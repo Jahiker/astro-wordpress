@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import { getPageId } from "../api/routes";
+
+const page = await getPageId("home");
+---
+
+<Layout title={page[0].title.rendered}>
+  <main class="main-wrapper">
+    <div>
+      {
+        page.map((post: any) => (
+          <>
+            <h1
+              class="text-4xl text-center font-bold flex justify-center items-center gap-4 mb-5"
+              set:html={post.title.rendered}
+            />
+            <p set:html={post.content.rendered} />
+          </>
+        ))
+      }
+    </div>
+  </main>
+</Layout>

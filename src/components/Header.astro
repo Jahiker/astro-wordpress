@@ -1,0 +1,27 @@
+---
+import { getHeaderNav } from "../api/routes";
+import { Icon } from "astro-icon";
+import Logo from "./Logo.astro";
+
+const nav = await getHeaderNav();
+---
+
+<header class="py-[30px]">
+  <div class="main-wrapper flex justify-between items-center">
+    <a href="/">
+      <Logo width="50" />
+    </a>
+    <ul class="flex justify-center items-center gap-20">
+      {
+        nav?.menu.map((item: any) => (
+          <li>
+            <a href={item.path}>{item.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <button>
+      <Icon pack="mdi" name="account" class="text-white text-lg" />
+    </button>
+  </div>
+</header>

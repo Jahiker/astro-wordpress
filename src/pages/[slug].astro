@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import { getPagesSlugs, getPageId, getMediaId } from "../api/routes";
+
+export async function getStaticPaths() {
+  const slugs = await getPagesSlugs();
+
+  return slugs;
+}
+
+const { slug } = Astro.params;
+
+const page: any[] = await getPageId(slug);
+const acf_fc_layout = page[0].acf.page_content|| null;
+console.log("🚀 ~ file: [slug].astro:15 ~ page:", acf_fc_layout);
+---
+
+<Layout title={page[0].title.rendered}>
+  <div class="main-wrapper">
+    <h1 class="text-4xl font-bold text-center">{page[0].title.rendered}</h1>
+    {acf_fc_layout === "hero" && <Hero image={acf_fc_layout[0].content.image} />}
+    <div set:html={page[0].content.rendered} />
+  </div>
+</Layout>

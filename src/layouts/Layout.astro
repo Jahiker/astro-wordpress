@@ -1,0 +1,99 @@
+---
+import Header from "../components/Header.astro";
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <slot />
+  </body>
+</html>
+<style is:global>
+  :root {
+    --primary-color: #7c1be4;
+    --primary-dark-color: #2a233e;
+    --primary-darkest-color: #171425;
+    --secondary-color: #ff7e33;
+    --dark-color: #151515;
+    --light-color: #e3e2e9;
+    --black-color: #000000;
+    --white-color: #ffffff;
+    --primary-gradient: linear-gradient(176deg, #2a233e 0%, #171425 100%);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: system-ui, sans-serif;
+    font-size: 62.5%;
+    background: var(--primary-dark-color);
+    background: var(--primary-gradient);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: var(--light-color);
+  }
+
+  body {
+    background-color: var(--accent-dark);
+    color: var(--accent-light);
+    min-height: 100vh;
+  }
+
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+
+  .main-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 3rem;
+  }
+
+  div,
+  section,
+  main,
+  span,
+  li {
+    font-size: 1.6rem;
+  }
+
+  a {
+    text-decoration: none;
+    font-size: 2rem;
+  }
+</style>
